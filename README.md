@@ -3,6 +3,7 @@
 [![Powered by Hono](https://img.shields.io/badge/Powered%20by-Hono-orange?style=flat-square)](https://hono.dev/)
 
 This is a self-contained test environment built with [Hono](https://hono.dev/) to demonstrate and experiment with the [x402 Protocol](https://x402.org/).
+This project helps you test USDC payments on the Base, Base Sepolia, and Solana Devnet networks, utilizing the facilitator from [payai.network](https://payai.network/).
 
 ![Test Page Screenshot](./screenshot.png)
 
