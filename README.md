@@ -66,7 +66,7 @@ The server will start on `http://localhost:8787`.
 
 2.  You will see two buttons on the test page:
 
-    - **Execute Payment & Call API**: This button calls the `/client/call-weather` endpoint. It will automatically perform the blockchain payment and, upon success, display the fetched weather data in a new tab.
+    - **Execute Payment & Call API**: This calls the `/client/call-weather` endpoint. It will automatically perform the blockchain payment and, upon success, display the fetched **dummy** weather data in a new tab.
 
     - **Call Paid API Directly**: This button calls the `/api/weather` endpoint directly. Since no payment has been made, this will trigger the x402 payment UI, prompting you to connect a wallet.
 
