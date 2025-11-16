@@ -55,10 +55,9 @@ app.get("/client/call-weather", async (c) => {
   const privateKey = process.env.PRIVATE_KEY as string | undefined;
   const baseURL = process.env.RESOURCE_SERVER_URL;
   const endpointPath = process.env.ENDPOINT_PATH;
-  const buyerNetwork = (process.env.NETWORK ||
-    "base-sepolia") as "base-sepolia";
+  const buyerNetwork = process.env.NETWORK || "base-sepolia";
 
-  if (!baseURL || !privateKey || !endpointPath || !buyerNetwork) {
+  if (!baseURL || !privateKey || !endpointPath) {
     console.error("Missing required environment variables for buyer-client.");
     return c.json({ error: "Server configuration error" }, 500);
   }
@@ -69,18 +68,28 @@ app.get("/client/call-weather", async (c) => {
     const signer = await createSigner(buyerNetwork, privateKey);
     const fetchWithPayment = wrapFetchWithPayment(fetch, signer);
     const response = await fetchWithPayment(url, { method: "GET" });
-    const body = await response.json();
 
-    if (response.ok) {
-      return c.json(body);
-    } else {
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error(`Error from paid API: ${response.status}`, errorBody);
       c.status(response.status as any);
-      return c.json(body);
+      try {
+        return c.json(JSON.parse(errorBody));
+      } catch {
+        return c.json({ error: "Upstream API error", details: errorBody });
+      }
     }
-  } catch (error: any) {
+
+    const body = await response.json();
+    return c.json(body);
+  } catch (error: unknown) {
     console.error("🚨 An unexpected error occurred in buyer-client:", error);
+    let errorMessage = "An unknown error occurred.";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
     return c.json(
-      { error: "An internal server error occurred.", details: error.message },
+      { error: "An internal server error occurred.", details: errorMessage },
       500
     );
   }
