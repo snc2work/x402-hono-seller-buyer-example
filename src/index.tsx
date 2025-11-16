@@ -23,10 +23,10 @@ app.get("/", (c) => {
 
 // --- seller ---
 
-const weatherPaymentMiddleware = paymentMiddleware(
+const premiumPaymentMiddleware = paymentMiddleware(
   payTo as Address,
   {
-    "/api/weather": {
+    "/api/premium": {
       price: "$0.001",
       network,
     },
@@ -34,22 +34,19 @@ const weatherPaymentMiddleware = paymentMiddleware(
   { url: facilitatorUrl }
 );
 
-app.use("/api/weather", weatherPaymentMiddleware);
+app.use("/api/premium", premiumPaymentMiddleware);
 
-app.get("/api/weather", (c) => {
-  console.log("✅ [/api/weather] Payment successful! Serving paid content.");
+app.get("/api/premium", (c) => {
+  console.log("✅ [/api/premium] Payment successful! Serving paid content.");
   return c.json({
-    report: {
-      weather: "sunny",
-      temperature: "25°C",
-    },
+    title: "x402 is groundbreaking!",
   });
 });
 
 // --- buyer ---
-app.get("/client/call-weather", async (c) => {
+app.get("/client/call-premium", async (c) => {
   console.log(
-    "[/client/call-weather] Request received. Calling internal paid API..."
+    "[/client/call-premium] Request received. Calling internal paid API..."
   );
 
   const privateKey = process.env.PRIVATE_KEY as string | undefined;

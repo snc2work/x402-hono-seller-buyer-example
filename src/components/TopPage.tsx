@@ -43,16 +43,16 @@ const TopPage = (props: { payToAddress: string; networkName: string }) => (
         <p>Test USDC payments for API access via the x402 protocol.</p>
         <div class="button-container">
           <div>
-            <a href="/client/call-weather" target="_blank" class="button">
+            <a href="/client/call-premium" target="_blank" class="button">
               Execute Payment & Call API
             </a>
             <small>
               (Processes payment automatically <br />
-              and displays dummy weather data on success.)
+              and displays dummy premium data on success.)
             </small>
           </div>
           <div>
-            <a href="/api/weather" target="_blank" class="button secondary">
+            <a href="/api/premium" target="_blank" class="button secondary">
               Call Paid API Directly
             </a>
             <small>(Opens the payment dialog.)</small>

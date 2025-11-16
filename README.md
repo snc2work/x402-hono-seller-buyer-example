@@ -9,8 +9,8 @@ This project helps you test USDC payments on the Base, Base Sepolia, and Solana 
 
 The project simulates both a "seller" and a "buyer" within a single server instance:
 
-- **Seller**: A paid API endpoint (`/api/weather`) protected by the `x402-hono` middleware.
-- **Buyer**: A client API endpoint (`/client/call-weather`) that uses `x402-fetch` to automatically handle the payment flow and access the paid content.
+- **Seller**: A paid API endpoint (`/api/premium`) protected by the `x402-hono` middleware.
+- **Buyer**: A client API endpoint (`/client/call-premium`) that uses `x402-fetch` to automatically handle the payment flow and access the paid content.
 - **Facilitator**: Utilizes the service from [payai.network](https://payai.network/) to provide payment details to the client.
   > **Tip:** This project also works with a self-hostable facilitator: [snc2work/x402-facilitator-hono](https://github.com/snc2work/x402-facilitator-hono). Try it if you want to learn how the facilitator side works. The "Tips for Buyers" section in that repository may also be helpful for Solana mainnet configurations.
 
@@ -67,9 +67,9 @@ The server will start on `http://localhost:8787`.
 
 2.  You will see two buttons on the test page:
 
-    - **Execute Payment & Call API**: This calls the `/client/call-weather` endpoint. It will automatically perform the blockchain payment and, upon success, display the fetched **dummy** weather data in a new tab.
+    - **Execute Payment & Call API**: This calls the `/client/call-premium` endpoint. It will automatically perform the blockchain payment and, upon success, display the fetched dummy data in a new tab.
 
-    - **Call Paid API Directly**: This button calls the `/api/weather` endpoint directly. Since no payment has been made, this will trigger the x402 payment UI, prompting you to connect a wallet.
+    - **Call Paid API Directly**: This button calls the `/api/premium` endpoint directly. Since no payment has been made, this will trigger the x402 payment UI, prompting you to connect a wallet.
 
 ## Environment Variables
 
@@ -80,7 +80,7 @@ The server will start on `http://localhost:8787`.
 | `FACILITATOR_URL`     | The x402 facilitator service URL.                                                  | `https://facilitator.http402.xyz` |
 | `PRIVATE_KEY`         | Private key of a **burner wallet** for making payments.                            | `0x123...` or a Base58 string     |
 | `RESOURCE_SERVER_URL` | The base URL of this server for internal calls.                                    | `http://localhost:8787`           |
-| `ENDPOINT_PATH`       | The path of the paid API endpoint.                                                 | `/api/weather`                    |
+| `ENDPOINT_PATH`       | The path of the paid API endpoint.                                                 | `/api/premium`                    |
 
 ## Version Information
 
