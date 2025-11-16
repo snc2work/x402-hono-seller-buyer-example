@@ -55,7 +55,8 @@ app.get("/client/call-weather", async (c) => {
   const privateKey = process.env.PRIVATE_KEY as string | undefined;
   const baseURL = process.env.RESOURCE_SERVER_URL;
   const endpointPath = process.env.ENDPOINT_PATH;
-  const buyerNetwork = process.env.NETWORK as "base-sepolia" | "polygon-amoy";
+  const buyerNetwork = (process.env.NETWORK ||
+    "base-sepolia") as "base-sepolia";
 
   if (!baseURL || !privateKey || !endpointPath || !buyerNetwork) {
     console.error("Missing required environment variables for buyer-client.");
