@@ -17,7 +17,6 @@ const TopPage = (props: { payToAddress: string; networkName: string }) => (
         .button.secondary { background-color: #6c757d; }
         .button.secondary:hover { background-color: #5a6268; }
         small { display: block; margin-top: 5px; color: #8a8d91; }
-        /* --- ▼▼▼ ここからが追加スタイル ▼▼▼ --- */
         .info-box {
           margin-top: 30px;
           padding: 15px;
@@ -36,21 +35,20 @@ const TopPage = (props: { payToAddress: string; networkName: string }) => (
         }
         .info-box a { color: #007bff; text-decoration: none; }
         .info-box a:hover { text-decoration: underline; }
-        /* --- ▲▲▲ ここまでが追加スタイル ▲▲▲ --- */
       `}</style>
     </head>
     <body>
       <div class="container">
         <h1>x402 Test Page</h1>
-        <p>Testing the purchase flow using the x402 protocol.</p>
+        <p>Test USDC payments for API access via the x402 protocol.</p>
         <div class="button-container">
           <div>
             <a href="/client/call-weather" target="_blank" class="button">
               Execute Payment & Call API
             </a>
             <small>
-              (Processes payment automatically and displays weather data on
-              success.)
+              (Processes payment automatically <br />
+              and displays dummy weather data on success.)
             </small>
           </div>
           <div>
@@ -60,10 +58,16 @@ const TopPage = (props: { payToAddress: string; networkName: string }) => (
             <small>(Opens the payment dialog.)</small>
           </div>
         </div>
+
         <div class="info-box">
-          <p>{props.networkName}</p>
-          <p class="address-text" title={props.payToAddress}>
-            {shortenAddress(props.payToAddress)}
+          <p>
+            <strong>Network:</strong> {props.networkName}
+          </p>
+          <p>
+            <strong>Receiving Address:</strong>
+            <span class="address-text" title={props.payToAddress}>
+              {shortenAddress(props.payToAddress)}
+            </span>
           </p>
         </div>
       </div>
