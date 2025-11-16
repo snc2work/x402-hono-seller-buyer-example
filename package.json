@@ -1,0 +1,19 @@
+{
+  "name": "x402-hono-seller-buyer-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx --require dotenv/config src/index.tsx"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.6",
+    "dotenv": "^17.2.3",
+    "hono": "^4.10.6",
+    "x402-fetch": "^0.7.0",
+    "x402-hono": "^0.7.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6"
+  }
+}
